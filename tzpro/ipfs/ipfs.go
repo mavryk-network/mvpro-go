@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strings"
 
-	"blockwatch.cc/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/internal/client"
 )
 
 type IpfsAPI interface {

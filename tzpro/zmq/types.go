@@ -4,8 +4,8 @@
 package zmq
 
 import (
-	"blockwatch.cc/tzpro-go/tzpro/index"
 	"github.com/mavryk-network/tzgo/tezos"
+	"github.com/mavryk-network/tzpro-go/tzpro/index"
 )
 
 type (

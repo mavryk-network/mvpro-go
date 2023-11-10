@@ -27,14 +27,14 @@ Older API versions are no longer supported. Please use an older version tag.
 ### Installation
 
 ```sh
-go get -u blockwatch.cc/tzpro-go
+go get -u github.com/mavryk-network/tzpro-go
 ```
 
 Then import, using
 
 ```go
 import (
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 ```
 
@@ -55,7 +55,7 @@ import (
 	"net"
 	"net/http"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 
@@ -84,7 +84,7 @@ func main() {
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
   "github.com/mavryk-network/tzgo/tezos"
 )
 
@@ -104,7 +104,7 @@ a, err := client.GetAccount(ctx, addr, params)
 import (
   "context"
   "github.com/mavryk-network/tzgo/tezos"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 // use default Mainnet client
@@ -127,7 +127,7 @@ xtzPool, ok := raw.GetBig("xtzPool")
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
   "github.com/mavryk-network/tzgo/tezos"
 )
 
@@ -148,7 +148,7 @@ The SDK has a convenient way for fetching results longer than the default maximu
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
   "github.com/mavryk-network/tzgo/tezos"
 )
 
@@ -180,7 +180,7 @@ for {
 import (
   "context"
   "github.com/mavryk-network/tzgo/tezos"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 // use default Mainnet client
@@ -212,7 +212,7 @@ err := raw.Unmarshal(dexterPool)
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 type HicNFT struct {
@@ -254,7 +254,7 @@ The [TzPro Table API](https://tzpro.com/docs/api#table-endpoints) is the fastest
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 client := tzpro.DefaultClient
@@ -285,7 +285,7 @@ Extending the example above, we now use TzGo's Micheline features to decode anno
 ```go
 import (
   "context"
-  "blockwatch.cc/tzpro-go/tzpro"
+  "github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 type HicNFT struct {

@@ -4,7 +4,7 @@
 package zmq
 
 import (
-	"blockwatch.cc/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/internal/client"
 )
 
 type Message struct {

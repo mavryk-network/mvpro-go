@@ -6,7 +6,7 @@ package index
 import (
 	"time"
 
-	"blockwatch.cc/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/internal/client"
 )
 
 type Income struct {

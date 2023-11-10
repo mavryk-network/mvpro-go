@@ -6,10 +6,10 @@ package tzpro
 import (
 	"time"
 
-	"blockwatch.cc/tzpro-go/internal/client"
-	"blockwatch.cc/tzpro-go/tzpro/defi"
-	"blockwatch.cc/tzpro-go/tzpro/index"
 	"github.com/mavryk-network/tzgo/tezos"
+	"github.com/mavryk-network/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/tzpro/defi"
+	"github.com/mavryk-network/tzpro-go/tzpro/index"
 )
 
 type (

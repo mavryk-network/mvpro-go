@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"blockwatch.cc/tzpro-go/tzpro"
 	"github.com/mavryk-network/tzgo/tezos"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 func TestToken(ctx context.Context, c *tzpro.Client) {

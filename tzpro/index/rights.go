@@ -4,8 +4,8 @@
 package index
 
 import (
-	"blockwatch.cc/tzpro-go/internal/client"
-	"blockwatch.cc/tzpro-go/internal/util"
+	"github.com/mavryk-network/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/internal/util"
 )
 
 type Right struct {

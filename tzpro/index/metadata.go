@@ -13,7 +13,7 @@ import (
 	"github.com/echa/code/iso"
 	"github.com/mavryk-network/tzgo/contract"
 
-	"blockwatch.cc/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/internal/client"
 )
 
 type MetadataAPI interface {

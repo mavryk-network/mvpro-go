@@ -8,7 +8,7 @@ import (
 	"math/big"
 	"time"
 
-	"blockwatch.cc/tzpro-go/internal/util"
+	"github.com/mavryk-network/tzpro-go/internal/util"
 )
 
 type ContractParameters struct {

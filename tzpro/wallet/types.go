@@ -4,12 +4,12 @@
 package wallet
 
 import (
-	"blockwatch.cc/tzpro-go/internal/client"
-	"blockwatch.cc/tzpro-go/tzpro/defi"
-	"blockwatch.cc/tzpro-go/tzpro/identity"
-	"blockwatch.cc/tzpro-go/tzpro/nft"
-	"blockwatch.cc/tzpro-go/tzpro/token"
 	"github.com/mavryk-network/tzgo/tezos"
+	"github.com/mavryk-network/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzpro-go/tzpro/defi"
+	"github.com/mavryk-network/tzpro-go/tzpro/identity"
+	"github.com/mavryk-network/tzpro-go/tzpro/nft"
+	"github.com/mavryk-network/tzpro-go/tzpro/token"
 )
 
 type (
