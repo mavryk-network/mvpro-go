@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"time"
 
-	"blockwatch.cc/tzgo/contract"
 	"github.com/echa/code/iata"
 	"github.com/echa/code/iso"
+	"github.com/mavryk-network/tzgo/contract"
 
 	"blockwatch.cc/tzpro-go/internal/client"
 )

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 func TestDomain(ctx context.Context, c *tzpro.Client) {
@@ -16,7 +16,7 @@ func TestDomain(ctx context.Context, c *tzpro.Client) {
 	})
 
 	try("LookupByAddress", func() {
-		if _, err := c.Domain.LookupByAddress(ctx, tzpro.NewAddress("tz1g8vkmcde6sWKaG2NN9WKzCkDM6Rziq194")); err != nil {
+		if _, err := c.Domain.LookupByAddress(ctx, tzpro.NewAddress("mv1MwUGjhhLQgkG2PE67soxBHmwuM3D97kDP")); err != nil {
 			panic(err)
 		}
 	})

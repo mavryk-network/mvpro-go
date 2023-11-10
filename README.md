@@ -85,13 +85,13 @@ func main() {
 import (
   "context"
   "blockwatch.cc/tzpro-go/tzpro"
-  "blockwatch.cc/tzgo/tezos"
+  "github.com/mavryk-network/tzgo/tezos"
 )
 
 // use default Mainnet client
 client := tzpro.DefaultClient
 ctx := context.Background()
-addr := tezos.MustParseAddress("tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9")
+addr := tezos.MustParseAddress("mv3CUdoCngwWGwK3i132dyHsffsmmgy5KZBn")
 
 // get account data and embed metadata if available
 params := tzpro.NewAccountParams().WithMeta()
@@ -103,7 +103,7 @@ a, err := client.GetAccount(ctx, addr, params)
 ```go
 import (
   "context"
-  "blockwatch.cc/tzgo/tezos"
+  "github.com/mavryk-network/tzgo/tezos"
   "blockwatch.cc/tzpro-go/tzpro"
 )
 
@@ -128,13 +128,13 @@ xtzPool, ok := raw.GetBig("xtzPool")
 import (
   "context"
   "blockwatch.cc/tzpro-go/tzpro"
-  "blockwatch.cc/tzgo/tezos"
+  "github.com/mavryk-network/tzgo/tezos"
 )
 
 // use default Mainnet client
 client := tzpro.DefaultClient
 ctx := context.Background()
-addr := tezos.MustParseAddress("tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk")
+addr := tezos.MustParseAddress("mv1E2Y8khTrfaRUeErWUBfg6G7zNMKnM4JJL")
 
 // list operations sent and received by this account
 params := tzpro.NewOpParams().WithLimit(100).WithOrder(tzpro.OrderDesc)
@@ -149,12 +149,12 @@ The SDK has a convenient way for fetching results longer than the default maximu
 import (
   "context"
   "blockwatch.cc/tzpro-go/tzpro"
-  "blockwatch.cc/tzgo/tezos"
+  "github.com/mavryk-network/tzgo/tezos"
 )
 
 client := tzpro.DefaultClient
 ctx := context.Background()
-addr := tezos.MustParseAddress("tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk")
+addr := tezos.MustParseAddress("mv1E2Y8khTrfaRUeErWUBfg6G7zNMKnM4JJL")
 params := tzpro.NewOpParams()
 
 for {
@@ -179,7 +179,7 @@ for {
 ```go
 import (
   "context"
-  "blockwatch.cc/tzgo/tezos"
+  "github.com/mavryk-network/tzgo/tezos"
   "blockwatch.cc/tzpro-go/tzpro"
 )
 
@@ -337,7 +337,7 @@ To avoid excessive overload of our API we limit the rate at which we process you
 var acc *tzpro.Account
 for {
 	var err error
-	acc, err = tzpro.GetAccount(ctx, tezos.MustParseAddress("tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"))
+	acc, err = tzpro.GetAccount(ctx, tezos.MustParseAddress("mv1E2Y8khTrfaRUeErWUBfg6G7zNMKnM4JJL"))
 	if err != nil {
 		if e, ok := tzpro.IsRateLimited(err); ok {
 			fmt.Printf("Rate limited, waiting for %s\n", e.Deadline())

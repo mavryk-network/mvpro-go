@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 func TestToken(ctx context.Context, c *tzpro.Client) {

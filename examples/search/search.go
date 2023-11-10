@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"os"
 
-	"blockwatch.cc/tzgo/tezos"
 	"blockwatch.cc/tzpro-go/tzpro"
 	"github.com/echa/log"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 var (

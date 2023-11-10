@@ -4,9 +4,9 @@
 package identity
 
 import (
-	"blockwatch.cc/tzgo/tezos"
 	"blockwatch.cc/tzpro-go/internal/client"
 	"blockwatch.cc/tzpro-go/internal/util"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 type (

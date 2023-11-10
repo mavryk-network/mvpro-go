@@ -4,8 +4,8 @@
 package token
 
 import (
-	"blockwatch.cc/tzgo/tezos"
 	"blockwatch.cc/tzpro-go/internal/client"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 type (

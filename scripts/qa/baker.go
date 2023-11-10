@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 func TestBaker(ctx context.Context, c *tzpro.Client) {
-	addr := tzpro.NewAddress("tz1go7f6mEQfT2xX2LuHAqgnRGN6c2zHPf5c") // main
+	addr := tzpro.NewAddress("mv1V4h45W3p4e1sjSBvRkK2uYbvkTnSuHg8g") // main
 	bkp := tzpro.WithMeta()
 	op := tzpro.WithStorage().WithMeta()
 

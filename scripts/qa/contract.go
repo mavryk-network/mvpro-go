@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 func TestContract(ctx context.Context, c *tzpro.Client) {

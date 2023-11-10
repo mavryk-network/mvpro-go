@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/tzpro-go/tzpro"
 )
 
 func TestWallet(ctx context.Context, c *tzpro.Client) {
-	addr := tzpro.NewAddress("tz1go7f6mEQfT2xX2LuHAqgnRGN6c2zHPf5c") // Main
+	addr := tzpro.NewAddress("mv1WiHteNXTnMRekcq1fs42Crm9nzwiWomZk") // Main
 	ap := tzpro.WithMeta()
 	op := tzpro.WithStorage().WithMeta()
 

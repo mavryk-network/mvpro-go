@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"blockwatch.cc/tzgo/tezos"
+	"github.com/mavryk-network/tzgo/tezos"
 )
 
 type ValueWalkerFunc func(path string, value interface{}) error
