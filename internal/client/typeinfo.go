@@ -12,7 +12,7 @@ import (
 
 const (
 	tagName  = "json"
-	flagName = "tzpro"
+	flagName = "mvpro"
 )
 
 const (

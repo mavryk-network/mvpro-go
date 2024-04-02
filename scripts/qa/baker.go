@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestBaker(ctx context.Context, c *tzpro.Client) {
-	addr := tzpro.NewAddress("mv1V4h45W3p4e1sjSBvRkK2uYbvkTnSuHg8g") // main
-	bkp := tzpro.WithMeta()
-	op := tzpro.WithStorage().WithMeta()
+func TestBaker(ctx context.Context, c *mvpro.Client) {
+	addr := mvpro.NewAddress("mv1V4h45W3p4e1sjSBvRkK2uYbvkTnSuHg8g") // main
+	bkp := mvpro.WithMeta()
+	op := mvpro.WithStorage().WithMeta()
 
 	// baker
 	try("GetBaker", func() {

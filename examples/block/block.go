@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/echa/log"
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&api, "api", "https://api.tzpro.io", "use API")
+	flag.StringVar(&api, "api", "https://api.mvpro.io", "use API")
 	flag.BoolVar(&verbose, "v", false, "verbose")
 	flag.BoolVar(&vdebug, "vv", false, "debug")
 	flag.BoolVar(&vtrace, "vvv", false, "trace")
@@ -44,7 +44,7 @@ func run() error {
 	ctx := context.Background()
 
 	// create a new SDK client
-	c := tzpro.NewClient(api, nil).WithLogger(log.Log)
+	c := mvpro.NewClient(api, nil).WithLogger(log.Log)
 
 	// fetch block
 	q := c.Block.NewQuery().WithLimit(1).Desc()

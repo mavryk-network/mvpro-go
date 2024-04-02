@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
-	"github.com/mavryk-network/tzpro-go/tzpro/market"
+	"github.com/mavryk-network/mvpro-go/mvpro"
+	"github.com/mavryk-network/mvpro-go/mvpro/market"
 )
 
-func TestMarket(ctx context.Context, c *tzpro.Client) {
+func TestMarket(ctx context.Context, c *mvpro.Client) {
 	try("GetTickers", func() {
 		if _, err := c.Market.ListTickers(ctx); err != nil {
 			panic(err)
@@ -24,7 +24,7 @@ func TestMarket(ctx context.Context, c *tzpro.Client) {
 		args := market.CandleQuery{
 			Market:   "kraken",
 			Pair:     "XTZ_USD",
-			Collapse: tzpro.Collapse1d,
+			Collapse: mvpro.Collapse1d,
 			From:     time.Now().Add(-168 * time.Hour),
 		}
 		if _, err := c.Market.ListCandles(ctx, args); err != nil {

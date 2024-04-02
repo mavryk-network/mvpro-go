@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestDomain(ctx context.Context, c *tzpro.Client) {
-	p := tzpro.NewQuery()
+func TestDomain(ctx context.Context, c *mvpro.Client) {
+	p := mvpro.NewQuery()
 
 	try("LookupByName", func() {
 		if _, err := c.Domain.LookupByName(ctx, "domains.tez"); err != nil {
@@ -16,7 +16,7 @@ func TestDomain(ctx context.Context, c *tzpro.Client) {
 	})
 
 	try("LookupByAddress", func() {
-		if _, err := c.Domain.LookupByAddress(ctx, tzpro.NewAddress("mv1MwUGjhhLQgkG2PE67soxBHmwuM3D97kDP")); err != nil {
+		if _, err := c.Domain.LookupByAddress(ctx, mvpro.NewAddress("mv1MwUGjhhLQgkG2PE67soxBHmwuM3D97kDP")); err != nil {
 			panic(err)
 		}
 	})

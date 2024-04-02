@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mavryk-network/tzpro-go/internal/util"
+	"github.com/mavryk-network/mvpro-go/internal/util"
 )
 
 type Query struct {

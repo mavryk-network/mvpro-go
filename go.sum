@@ -1,5 +1,5 @@
-blockwatch.cc/tzgo v1.18.2 h1:6MGW9uGiEJZnSNfiicKUMwNnUwz1FJLApnlcnkllWQ8=
-blockwatch.cc/tzgo v1.18.2/go.mod h1:qZ2uZs/1U0AsrwyE0EuQSd144c2hF3sTP1Vm7g/qsQ8=
+github.com/mavryk-network/mvpro v1.18.2 h1:6MGW9uGiEJZnSNfiicKUMwNnUwz1FJLApnlcnkllWQ8=
+github.com/mavryk-network/mvpro v1.18.2/go.mod h1:qZ2uZs/1U0AsrwyE0EuQSd144c2hF3sTP1Vm7g/qsQ8=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/daviddengcn/go-colortext v1.0.0 h1:ANqDyC0ys6qCSvuEK7l3g5RaehL/Xck9EX8ATG8oKsE=
 github.com/daviddengcn/go-colortext v1.0.0/go.mod h1:zDqEI5NVUop5QPpVJUxE9UO10hRnmkD5G4Pmri9+m4c=
@@ -30,6 +30,8 @@ github.com/mattn/go-isatty v0.0.16/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/
 github.com/mattn/go-isatty v0.0.17/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/yFXSvRLM=
 github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
+github.com/mavryk-network/mvgo v1.18.4 h1:wCZKaRb+vd1fb7Jzy0j+wpZqP0BiEUDvBdzz3cLEWI0=
+github.com/mavryk-network/mvgo v1.18.4/go.mod h1:Bq36wrJK7pZP8rLKmMXphl7QSxy7F0vP+CqBLGgR5zk=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/rogpeppe/go-internal v1.12.0 h1:exVL4IDcn6na9z1rAb56Vxr+CgyK3nn3O+epU5NdKM8=
 golang.org/x/crypto v0.18.0 h1:PGVlW0xEltQnzFZ55hkuX5+KLyrMYhHld1YHO4AKcdc=

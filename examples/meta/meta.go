@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 func main() {
@@ -27,10 +27,10 @@ func run() error {
 	ctx := context.Background()
 
 	// create a new SDK client
-	c := tzpro.NewClient("https://api.tzpro.io", nil)
+	c := mvpro.NewClient("https://api.mvpro.io", nil)
 
 	// parse an address
-	addr, err := tzpro.ParseAddress(flag.Arg(0))
+	addr, err := mvpro.ParseAddress(flag.Arg(0))
 	if err != nil {
 		return err
 	}
@@ -39,7 +39,7 @@ func run() error {
 	md, err := c.Metadata.GetWallet(ctx, addr)
 	if err != nil {
 		// handle 404 NotFound errors in a special way
-		if e, ok := tzpro.IsErrHttp(err); ok && e.StatusCode() == http.StatusNotFound {
+		if e, ok := mvpro.IsErrHttp(err); ok && e.StatusCode() == http.StatusNotFound {
 			return fmt.Errorf("No metadata for this account")
 		}
 		return err

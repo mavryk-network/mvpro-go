@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestFarm(ctx context.Context, c *tzpro.Client) {
-	p := tzpro.NewQuery()
+func TestFarm(ctx context.Context, c *mvpro.Client) {
+	p := mvpro.NewQuery()
 	// dex
 	try("ListFarms", func() {
 		if _, err := c.Farm.ListFarms(ctx, p); err != nil {

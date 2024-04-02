@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestDex(ctx context.Context, c *tzpro.Client) {
-	p := tzpro.NewQuery()
+func TestDex(ctx context.Context, c *mvpro.Client) {
+	p := mvpro.NewQuery()
 	// dex
 	try("ListDexes", func() {
 		if _, err := c.Dex.ListDex(ctx, p); err != nil {
@@ -15,7 +15,7 @@ func TestDex(ctx context.Context, c *tzpro.Client) {
 		}
 	})
 
-	addr := tzpro.NewPoolAddres("KT1J8Hr3BP8bpbfmgGpRPoC9nAMSYtStZG43_0")
+	addr := mvpro.NewPoolAddres("KT1J8Hr3BP8bpbfmgGpRPoC9nAMSYtStZG43_0")
 	try("GetDex", func() {
 		if _, err := c.Dex.GetDex(ctx, addr); err != nil {
 			panic(err)

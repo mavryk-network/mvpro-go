@@ -14,7 +14,7 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/mavryk-network/tzpro-go/internal/util"
+	"github.com/mavryk-network/mvpro-go/internal/util"
 )
 
 type Decoder struct {

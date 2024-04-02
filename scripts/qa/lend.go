@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestLend(ctx context.Context, c *tzpro.Client) {
-	p := tzpro.NewQuery()
+func TestLend(ctx context.Context, c *mvpro.Client) {
+	p := mvpro.NewQuery()
 	// dex
 	try("ListLendings", func() {
 		if _, err := c.Lend.ListPools(ctx, p); err != nil {

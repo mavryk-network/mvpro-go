@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mavryk-network/tzpro-go/tzpro"
-	"github.com/mavryk-network/tzpro-go/tzpro/index"
+	"github.com/mavryk-network/mvpro-go/mvpro"
+	"github.com/mavryk-network/mvpro-go/mvpro/index"
 )
 
-func TestBlock(ctx context.Context, c *tzpro.Client, tip *index.Tip) {
-	bp := tzpro.WithRights().WithMeta()
+func TestBlock(ctx context.Context, c *mvpro.Client, tip *index.Tip) {
+	bp := mvpro.WithRights().WithMeta()
 	op := bp.Clone()
 
 	// block

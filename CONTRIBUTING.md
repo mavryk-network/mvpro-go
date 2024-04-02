@@ -1,6 +1,6 @@
-# Contributing to tzpro-go
+# Contributing to mvpro-go
 
-We welcome all contributions to tzpro-go, be it extensions, bug fixes, documentation, or examples. This document outlines some of the conventions we put in place to keep the work on tzpro-go tidy and fun.
+We welcome all contributions to mvpro-go, be it extensions, bug fixes, documentation, or examples. This document outlines some of the conventions we put in place to keep the work on mvpro-go tidy and fun.
 
 Before you start, please **read** and **sign** our Contributor License Agreement and send it to license@blockwatch.cc:
 
@@ -12,7 +12,7 @@ The CLA is meant to protect you and us from legal trouble.
 If you need any help or mentoring getting started or making a PR, please ask on [Discord](https://discord.gg/sPnr7jAP8f).
 
 
-tzpro-go is written in Golang and uses Go modules, so it should work with Go versions >= 1.11.
+mvpro-go is written in Golang and uses Go modules, so it should work with Go versions >= 1.11.
 
 ## Contribution flow
 
