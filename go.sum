@@ -1,5 +1,3 @@
-github.com/mavryk-network/mvpro v1.18.2 h1:6MGW9uGiEJZnSNfiicKUMwNnUwz1FJLApnlcnkllWQ8=
-github.com/mavryk-network/mvpro v1.18.2/go.mod h1:qZ2uZs/1U0AsrwyE0EuQSd144c2hF3sTP1Vm7g/qsQ8=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/daviddengcn/go-colortext v1.0.0 h1:ANqDyC0ys6qCSvuEK7l3g5RaehL/Xck9EX8ATG8oKsE=
 github.com/daviddengcn/go-colortext v1.0.0/go.mod h1:zDqEI5NVUop5QPpVJUxE9UO10hRnmkD5G4Pmri9+m4c=
