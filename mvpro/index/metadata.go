@@ -12,6 +12,7 @@ import (
 	"github.com/echa/code/iata"
 	"github.com/echa/code/iso"
 	"github.com/mavryk-network/mvgo/contract"
+	"github.com/mavryk-network/mvgo/mavryk"
 
 	"github.com/mavryk-network/mvpro-go/internal/client"
 )
@@ -19,10 +20,12 @@ import (
 type MetadataAPI interface {
 	List(context.Context) ([]Metadata, error)
 	GetWallet(context.Context, Address) (Metadata, error)
+	GetAsset(context.Context, Token) (Metadata, error)
 	Create(context.Context, []Metadata) ([]Metadata, error)
 	Update(context.Context, Metadata) (Metadata, error)
 	Purge(context.Context) error
 	RemoveWallet(context.Context, Address) error
+	RemoveAsset(context.Context, Token) error
 	DescribeAny(context.Context, string, string) (MetadataDescriptor, error)
 	DescribeAddress(context.Context, Address) (MetadataDescriptor, error)
 	GetSchema(context.Context, string) (json.RawMessage, error)
@@ -61,6 +64,7 @@ type MetadataDescriptor struct {
 
 type Metadata struct {
 	Address  Address        `json:"address"`
+	TokenId  *mavryk.Z      `json:"token_id,omitempty"`
 	Contents map[string]any `json:"-"`
 }
 
@@ -72,7 +76,11 @@ func NewMetadata(a Address) *Metadata {
 }
 
 func (m Metadata) ID() string {
-	return m.Address.String()
+	id := m.Address.String()
+	if m.TokenId != nil {
+		id += "_" + m.TokenId.String()
+	}
+	return id
 }
 
 func (m Metadata) Has(name string) bool {
@@ -138,6 +146,9 @@ func (m Metadata) MarshalJSON() ([]byte, error) {
 		out[n] = v
 	}
 	out["address"] = m.Address
+	if m.TokenId != nil {
+		out["asset_id"] = *m.TokenId
+	}
 	return json.Marshal(out)
 }
 
@@ -152,6 +163,8 @@ func (m *Metadata) UnmarshalJSON(buf []byte) error {
 		switch n {
 		case "address":
 			err = json.Unmarshal(v, &m.Address)
+		case "asset_id":
+			err = json.Unmarshal(v, &m.TokenId)
 		default:
 			var data any
 			schema, ok := Schemas[n]
@@ -486,6 +499,14 @@ func (c *metaClient) GetWallet(ctx context.Context, addr Address) (Metadata, err
 	return resp, nil
 }
 
+func (c *metaClient) GetAsset(ctx context.Context, addr Token) (Metadata, error) {
+	var resp Metadata
+	if err := c.client.Get(ctx, "/metadata/"+addr.String(), nil, &resp); err != nil {
+		return resp, err
+	}
+	return resp, nil
+}
+
 func (c *metaClient) Create(ctx context.Context, metadata []Metadata) ([]Metadata, error) {
 	resp := make([]Metadata, 0)
 	err := c.client.Post(ctx, "/metadata", nil, &metadata, &resp)
@@ -495,6 +516,9 @@ func (c *metaClient) Create(ctx context.Context, metadata []Metadata) ([]Metadat
 func (c *metaClient) Update(ctx context.Context, alias Metadata) (Metadata, error) {
 	var resp Metadata
 	u := fmt.Sprintf("/metadata/%s", alias.Address)
+	if alias.TokenId != nil {
+		u += "_" + alias.TokenId.String()
+	}
 	if err := c.client.Put(ctx, u, nil, &alias, &resp); err != nil {
 		return resp, err
 	}
@@ -502,6 +526,10 @@ func (c *metaClient) Update(ctx context.Context, alias Metadata) (Metadata, erro
 }
 
 func (c *metaClient) RemoveWallet(ctx context.Context, addr Address) error {
+	return c.client.Delete(ctx, fmt.Sprintf("/metadata/%s", addr), nil)
+}
+
+func (c *metaClient) RemoveAsset(ctx context.Context, addr Token) error {
 	return c.client.Delete(ctx, fmt.Sprintf("/metadata/%s", addr), nil)
 }
 
