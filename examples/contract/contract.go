@@ -39,7 +39,7 @@ func init() {
 	flags.BoolVar(&verbose, "v", false, "verbose")
 	flags.BoolVar(&vdebug, "vv", false, "debug")
 	flags.BoolVar(&vtrace, "vvv", false, "trace")
-	flags.StringVar(&node, "node", "https://rpc.mavryk.network/mainnet", "Mavryk node url")
+	flags.StringVar(&node, "node", "https://rpc.mavryk.network", "Mavryk node url")
 	flags.StringVar(&api, "api", "https://api.mvpro.io", "MvPro API url")
 	flags.BoolVar(&withPrim, "prim", false, "show primitives")
 	flags.BoolVar(&withUnpack, "unpack", false, "unpack packed contract data")
