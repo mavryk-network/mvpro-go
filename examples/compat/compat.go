@@ -4,14 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
-
 	"github.com/echa/log"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 func main() {
 	log.SetLevel(log.LevelDebug)
-	c := tzpro.NewClient("https://api.tzpro.io", nil).WithLogger(log.Log)
+	c := mvpro.NewClient("https://api.mvpro.io", nil).WithLogger(log.Log)
 	_, err := c.Contract.NewQuery().Run(context.Background())
 	fmt.Println(err)
 }

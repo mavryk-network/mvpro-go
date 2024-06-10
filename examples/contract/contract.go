@@ -15,11 +15,11 @@ import (
 	"strconv"
 	"strings"
 
-	"blockwatch.cc/tzgo/micheline"
-	"blockwatch.cc/tzgo/tezos"
-	"blockwatch.cc/tzpro-go/tzpro"
 	ct "github.com/daviddengcn/go-colortext"
 	"github.com/echa/log"
+	"github.com/mavryk-network/mvgo/mavryk"
+	"github.com/mavryk-network/mvgo/micheline"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 var (
@@ -39,8 +39,8 @@ func init() {
 	flags.BoolVar(&verbose, "v", false, "verbose")
 	flags.BoolVar(&vdebug, "vv", false, "debug")
 	flags.BoolVar(&vtrace, "vvv", false, "trace")
-	flags.StringVar(&node, "node", "https://rpc.tzpro.io", "Tezos node url")
-	flags.StringVar(&api, "api", "https://api.tzpro.io", "TzPro API url")
+	flags.StringVar(&node, "node", "https://rpc.mavryk.network", "Mavryk node url")
+	flags.StringVar(&api, "api", "https://api.mvpro.io", "MvPro API url")
 	flags.BoolVar(&withPrim, "prim", false, "show primitives")
 	flags.BoolVar(&withUnpack, "unpack", false, "unpack packed contract data")
 	flags.BoolVar(&nocolor, "no-color", false, "disable color output")
@@ -71,7 +71,7 @@ func main() {
 		log.SetLevel(log.LevelTrace)
 	}
 	if err := run(); err != nil {
-		if e, ok := tzpro.IsErrApi(err); ok {
+		if e, ok := mvpro.IsErrApi(err); ok {
 			fmt.Printf("Error: %s: %s\n", e.Message, e.Detail)
 		} else {
 			fmt.Printf("Error: %v\n", err)
@@ -92,35 +92,35 @@ func run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := tzpro.NewClient(api, nil).WithLogger(log.Log)
+	c := mvpro.NewClient(api, nil).WithLogger(log.Log)
 
 	switch cmd {
 	case "info":
-		addr, err := tezos.ParseAddress(flags.Arg(1))
+		addr, err := mavryk.ParseAddress(flags.Arg(1))
 		if err != nil {
 			return err
 		}
 		return getContractInfo(ctx, c, addr)
 	case "type":
-		addr, err := tezos.ParseAddress(flags.Arg(1))
+		addr, err := mavryk.ParseAddress(flags.Arg(1))
 		if err != nil {
 			return err
 		}
 		return getContractType(ctx, c, addr)
 	case "entry":
-		addr, err := tezos.ParseAddress(flags.Arg(1))
+		addr, err := mavryk.ParseAddress(flags.Arg(1))
 		if err != nil {
 			return err
 		}
 		return getContractEntrypoints(ctx, c, addr)
 	case "storage":
-		addr, err := tezos.ParseAddress(flags.Arg(1))
+		addr, err := mavryk.ParseAddress(flags.Arg(1))
 		if err != nil {
 			return err
 		}
 		return getContractStorage(ctx, c, addr)
 	case "params":
-		oh, err := tezos.ParseOpHash(flags.Arg(1))
+		oh, err := mavryk.ParseOpHash(flags.Arg(1))
 		if err != nil {
 			return err
 		}
@@ -130,8 +130,8 @@ func run() error {
 	}
 }
 
-func getContractInfo(ctx context.Context, c *tzpro.Client, addr tezos.Address) error {
-	cc, err := c.Contract.Get(ctx, addr, tzpro.NoQuery)
+func getContractInfo(ctx context.Context, c *mvpro.Client, addr mavryk.Address) error {
+	cc, err := c.Contract.Get(ctx, addr, mvpro.NoQuery)
 	if err != nil {
 		return err
 	}
@@ -140,8 +140,8 @@ func getContractInfo(ctx context.Context, c *tzpro.Client, addr tezos.Address) e
 	return nil
 }
 
-func getContractType(ctx context.Context, c *tzpro.Client, addr tezos.Address) error {
-	script, err := c.Contract.GetScript(ctx, addr, tzpro.WithPrim())
+func getContractType(ctx context.Context, c *mvpro.Client, addr mavryk.Address) error {
+	script, err := c.Contract.GetScript(ctx, addr, mvpro.WithPrim())
 	if err != nil {
 		return err
 	}
@@ -154,8 +154,8 @@ func getContractType(ctx context.Context, c *tzpro.Client, addr tezos.Address) e
 	return nil
 }
 
-func getContractEntrypoints(ctx context.Context, c *tzpro.Client, addr tezos.Address) error {
-	cc, err := c.Contract.GetScript(ctx, addr, tzpro.WithPrim())
+func getContractEntrypoints(ctx context.Context, c *mvpro.Client, addr mavryk.Address) error {
+	cc, err := c.Contract.GetScript(ctx, addr, mvpro.WithPrim())
 	if err != nil {
 		return err
 	}
@@ -172,8 +172,8 @@ func getContractEntrypoints(ctx context.Context, c *tzpro.Client, addr tezos.Add
 	return nil
 }
 
-func getContractStorage(ctx context.Context, c *tzpro.Client, addr tezos.Address) error {
-	p := tzpro.WithPrim()
+func getContractStorage(ctx context.Context, c *mvpro.Client, addr mavryk.Address) error {
+	p := mvpro.WithPrim()
 	cc, err := c.Contract.GetScript(ctx, addr, p)
 	if err != nil {
 		return err
@@ -191,8 +191,8 @@ func getContractStorage(ctx context.Context, c *tzpro.Client, addr tezos.Address
 	return nil
 }
 
-func getContractCall(ctx context.Context, c *tzpro.Client, hash tezos.OpHash) error {
-	ops, err := c.Op.Get(ctx, hash, tzpro.WithPrim())
+func getContractCall(ctx context.Context, c *mvpro.Client, hash mavryk.OpHash) error {
+	ops, err := c.Op.Get(ctx, hash, mvpro.WithPrim())
 	if err != nil {
 		return err
 	}
@@ -203,14 +203,14 @@ func getContractCall(ctx context.Context, c *tzpro.Client, hash tezos.OpHash) er
 		fmt.Printf("  params:  %t\n", op.HasParameters())
 		fmt.Printf("  storage: %t\n", op.HasStorage())
 		fmt.Printf("  bigmap:  %t\n", op.HasBigmapUpdates())
-		if op.Type != tzpro.OpTypeTransaction {
+		if op.Type != mvpro.OpTypeTransaction {
 			continue
 		}
 		if !op.IsContract {
 			continue
 		}
 		if op.HasParameters() {
-			script, err := c.Contract.GetScript(ctx, op.Receiver, tzpro.WithPrim())
+			script, err := c.Contract.GetScript(ctx, op.Receiver, mvpro.WithPrim())
 			if err != nil {
 				return err
 			}

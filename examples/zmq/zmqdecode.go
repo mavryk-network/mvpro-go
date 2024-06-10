@@ -1,8 +1,8 @@
 package main
 
 import (
-	// "blockwatch.cc/tzpro-go/tzpro"
-	"blockwatch.cc/tzpro-go/tzpro/zmq"
+	// "github.com/mavryk-network/mvpro-go/mvpro"
+	"github.com/mavryk-network/mvpro-go/mvpro/zmq"
 	// "context"
 	"encoding/json"
 	"fmt"
@@ -20,7 +20,7 @@ func main() {
 func run() error {
 	// ctx, cancel := context.WithCancel(context.Background())
 	// defer cancel()
-	// client := tzpro.NewClient("https://api.tzpro.io", nil)
+	// client := mvpro.NewClient("https://api.mvpro.io", nil)
 
 	msg := o1
 

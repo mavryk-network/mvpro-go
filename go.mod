@@ -1,13 +1,13 @@
-module blockwatch.cc/tzpro-go
+module github.com/mavryk-network/mvpro-go
 
 go 1.20
 
 require (
-	blockwatch.cc/tzgo v1.18.2
 	github.com/daviddengcn/go-colortext v1.0.0
 	github.com/echa/code v1.0.1
 	github.com/echa/log v1.2.4
 	github.com/hashicorp/golang-lru/v2 v2.0.7
+	github.com/mavryk-network/mvgo v1.18.5-0.20240429092636-4a33b0467056
 )
 
 require (

@@ -1,5 +1,5 @@
 kind: pipeline
-name: TzPro-Go Pipeline
+name: MvPro-Go Pipeline
 platform:
   os: linux
   arch: amd64

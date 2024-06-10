@@ -6,8 +6,8 @@ import (
 	"flag"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
 	"github.com/echa/log"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&api, "api", "https://api.tzpro.io", "use API")
+	flag.StringVar(&api, "api", "https://api.mvpro.io", "use API")
 	flag.BoolVar(&verbose, "v", false, "verbose")
 	flag.BoolVar(&vdebug, "vv", false, "debug")
 	flag.BoolVar(&vtrace, "vvv", false, "trace")
@@ -37,7 +37,7 @@ func main() {
 		log.SetLevel(log.LevelTrace)
 	}
 	// create a new SDK client
-	c := tzpro.NewClient(api, nil).WithLogger(log.Log)
+	c := mvpro.NewClient(api, nil).WithLogger(log.Log)
 
 	var err error
 	switch mode {
@@ -53,12 +53,12 @@ func main() {
 	}
 }
 
-func runExplorer(c *tzpro.Client) error {
+func runExplorer(c *mvpro.Client) error {
 	// use explorer API to get account info and embed metadata if available
 	a, err := c.Account.Get(
 		context.Background(),
-		tzpro.NewAddress(flag.Arg(0)),
-		tzpro.WithMeta(),
+		mvpro.NewAddress(flag.Arg(0)),
+		mvpro.WithMeta(),
 	)
 	if err != nil {
 		return err
@@ -68,7 +68,7 @@ func runExplorer(c *tzpro.Client) error {
 	return nil
 }
 
-func runTable(c *tzpro.Client) error {
+func runTable(c *mvpro.Client) error {
 	// use table API to get raw account info
 	q := c.Account.NewQuery().AndEqual("address", flag.Arg(0))
 	res, err := q.Run(context.Background())

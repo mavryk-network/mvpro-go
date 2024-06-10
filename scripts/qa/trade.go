@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestNft(ctx context.Context, c *tzpro.Client) {
-	p := tzpro.NewQuery()
+func TestNft(ctx context.Context, c *mvpro.Client) {
+	p := mvpro.NewQuery()
 	// dex
 	try("ListNftMarkets", func() {
 		if _, err := c.Nft.ListMarkets(ctx, p); err != nil {
@@ -21,7 +21,7 @@ func TestNft(ctx context.Context, c *tzpro.Client) {
 			panic(err)
 		}
 	})
-	addr := tzpro.NewAddress("KT1HbQepzV1nVGg8QVznG7z4RcHseD5kwqBn")
+	addr := mvpro.NewAddress("KT1HbQepzV1nVGg8QVznG7z4RcHseD5kwqBn")
 	try("ListMarketEvents", func() {
 		if _, err := c.Nft.ListMarketEvents(ctx, addr, p); err != nil {
 			panic(err)

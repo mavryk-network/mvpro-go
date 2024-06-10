@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"os"
 
-	"blockwatch.cc/tzgo/tezos"
-	"blockwatch.cc/tzpro-go/tzpro"
 	"github.com/echa/log"
+	"github.com/mavryk-network/mvgo/mavryk"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 var (
@@ -25,13 +25,13 @@ var (
 func init() {
 	flags.Usage = func() {}
 	flags.BoolVar(&verbose, "v", false, "be verbose")
-	flags.StringVar(&index, "index", "https://api.tzpro.io", "TzPro API Url")
+	flags.StringVar(&index, "index", "https://api.mvpro.io", "MvPro API Url")
 }
 
 func main() {
 	if err := flags.Parse(os.Args[1:]); err != nil {
 		if err == flag.ErrHelp {
-			fmt.Println("Tezos Contract Call Search")
+			fmt.Println("Mavryk Contract Call Search")
 			flags.PrintDefaults()
 			os.Exit(0)
 		}
@@ -51,7 +51,7 @@ func run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := tzpro.NewClient(index, nil).WithLogger(log.Log)
+	c := mvpro.NewClient(index, nil).WithLogger(log.Log)
 
 	if err := searchCalls(ctx, c); err != nil {
 		return err
@@ -61,18 +61,18 @@ func run() error {
 }
 
 // Using Explorer API
-func searchCalls(ctx context.Context, c *tzpro.Client) error {
-	recv, err := tezos.ParseAddress(flags.Arg(0))
+func searchCalls(ctx context.Context, c *mvpro.Client) error {
+	recv, err := mavryk.ParseAddress(flags.Arg(0))
 	if err != nil {
 		return err
 	}
-	addr, err := tezos.ParseAddress(flags.Arg(1))
+	addr, err := mavryk.ParseAddress(flags.Arg(1))
 	if err != nil {
 		return err
 	}
 	log.Infof("Searching calls to %s for address %s", recv, addr)
 
-	p := tzpro.WithLimit(500)
+	p := mvpro.WithLimit(500)
 	plog := log.NewProgressLogger(log.Log)
 	var (
 		count int
@@ -93,7 +93,7 @@ func searchCalls(ctx context.Context, c *tzpro.Client) error {
 					if value == nil {
 						return nil
 					}
-					if s, ok := value.(tezos.Address); ok {
+					if s, ok := value.(mavryk.Address); ok {
 						found = found || s.Equal(addr)
 					}
 					return nil
@@ -108,7 +108,7 @@ func searchCalls(ctx context.Context, c *tzpro.Client) error {
 					if value == nil {
 						return nil
 					}
-					if s, ok := value.(tezos.Address); ok {
+					if s, ok := value.(mavryk.Address); ok {
 						found = found || s.Equal(addr)
 					}
 					return nil
@@ -123,7 +123,7 @@ func searchCalls(ctx context.Context, c *tzpro.Client) error {
 					if value == nil {
 						return nil
 					}
-					if s, ok := value.(tezos.Address); ok {
+					if s, ok := value.(mavryk.Address); ok {
 						found = found || s.Equal(addr)
 					}
 					return nil
@@ -145,7 +145,7 @@ func searchCalls(ctx context.Context, c *tzpro.Client) error {
 }
 
 // Using Table API
-func search(ctx context.Context, c *tzpro.Client) error {
+func search(ctx context.Context, c *mvpro.Client) error {
 	recv := flags.Arg(0)
 	addr := flags.Arg(1)
 	log.Infof("Searching calls to %s for address %s", recv, addr)

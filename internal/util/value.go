@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"blockwatch.cc/tzgo/tezos"
+	"github.com/mavryk-network/mvgo/mavryk"
 )
 
 type ValueWalkerFunc func(path string, value interface{}) error
@@ -117,14 +117,14 @@ func GetPathBig(val interface{}, path string) (*big.Int, bool) {
 	return n, err == nil
 }
 
-func GetPathZ(val interface{}, path string) (tezos.Z, bool) {
+func GetPathZ(val interface{}, path string) (mavryk.Z, bool) {
 	str, ok := GetPathString(val, path)
 	if !ok {
-		return tezos.Zero, ok
+		return mavryk.Zero, ok
 	}
 	n := new(big.Int)
 	_, err := fmt.Sscan(str, n)
-	return tezos.NewBigZ(n), err == nil
+	return mavryk.NewBigZ(n), err == nil
 }
 
 func GetPathTime(val interface{}, path string) (time.Time, bool) {
@@ -143,12 +143,12 @@ func GetPathTime(val interface{}, path string) (time.Time, bool) {
 	return t, err == nil
 }
 
-func GetPathAddress(val interface{}, path string) (tezos.Address, bool) {
+func GetPathAddress(val interface{}, path string) (mavryk.Address, bool) {
 	str, ok := GetPathString(val, path)
 	if !ok {
-		return tezos.InvalidAddress, ok
+		return mavryk.InvalidAddress, ok
 	}
-	a, err := tezos.ParseAddress(str)
+	a, err := mavryk.ParseAddress(str)
 	return a, err == nil
 }
 

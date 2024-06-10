@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"os"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
 func main() {
 	// use default Mainnet client
-	c := tzpro.NewClient("https://api.tzpro.io", nil)
+	c := mvpro.NewClient("https://api.mvpro.io", nil)
 	ctx := context.Background()
 
 	q := c.Op.NewQuery().AndEqual("hash", os.Args[1])

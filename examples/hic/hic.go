@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"blockwatch.cc/tzgo/tezos"
-	"blockwatch.cc/tzpro-go/tzpro"
-	"blockwatch.cc/tzpro-go/tzpro/index"
 	"github.com/echa/log"
+	"github.com/mavryk-network/mvgo/mavryk"
+	"github.com/mavryk-network/mvpro-go/mvpro"
+	"github.com/mavryk-network/mvpro-go/mvpro/index"
 )
 
 const (
@@ -35,7 +35,7 @@ func init() {
 	flags.Usage = func() {}
 	flags.BoolVar(&verbose, "v", false, "be verbose")
 	flags.BoolVar(&nofail, "nofail", false, "no fail on IPFS error")
-	flags.StringVar(&api, "api", "https://api.tzpro.io", "TzStats API URL")
+	flags.StringVar(&api, "api", "https://api.mvpro.io", "TzStats API URL")
 	flags.StringVar(&ipfs, "ipfs", "https://ipfs.tzstats.com", "IPFS gateway URL")
 	flags.IntVar(&offset, "offset", 0, "NFT List offset")
 	flags.StringVar(&store, "store", "nfts/", "path where we store metadata downloaded frm IPFS")
@@ -67,7 +67,7 @@ type HicNFT struct {
 	TokenInfo map[string]string `json:"token_info"`
 }
 
-func (h HicNFT) ResolveMetadata(ctx context.Context, c *tzpro.Client) (*HicMetadata, error) {
+func (h HicNFT) ResolveMetadata(ctx context.Context, c *mvpro.Client) (*HicMetadata, error) {
 	uri, ok := h.TokenInfo[""]
 	if !ok {
 		return nil, fmt.Errorf("Missing token metadata")
@@ -111,7 +111,7 @@ func run() error {
 	ctx := context.Background()
 
 	// create a new SDK client
-	c := tzpro.NewClient(api, nil).WithLogger(log.Log)
+	c := mvpro.NewClient(api, nil).WithLogger(log.Log)
 
 	switch cmd := flags.Arg(0); cmd {
 	case "fetch":
@@ -128,11 +128,11 @@ func run() error {
 
 }
 
-func findExploits(ctx context.Context, c *tzpro.Client) error {
+func findExploits(ctx context.Context, c *mvpro.Client) error {
 	// fetch all NFTs from bigmap 511
 	start := time.Now()
 	var count int = offset
-	params := tzpro.NewQuery().
+	params := mvpro.NewQuery().
 		WithMeta().
 		WithUnpack().
 		WithLimit(500).
@@ -153,7 +153,7 @@ func findExploits(ctx context.Context, c *tzpro.Client) error {
 		again:
 			meta, err := nft.ResolveMetadata(ctx, c)
 			if err != nil {
-				if e, ok := tzpro.IsErrRateLimited(err); ok {
+				if e, ok := mvpro.IsErrRateLimited(err); ok {
 					fmt.Printf("ERR 429 - waiting %s...\n", e.Deadline())
 					e.Wait(ctx)
 					goto again
@@ -172,7 +172,7 @@ func findExploits(ctx context.Context, c *tzpro.Client) error {
 			if len(meta.Creators) != 1 {
 				fmt.Printf("WARN OBJKT %d has %d creators\n", nft.TokenId, len(meta.Creators))
 			}
-			creator, err := tezos.ParseAddress(meta.Creators[0])
+			creator, err := mavryk.ParseAddress(meta.Creators[0])
 			if err != nil {
 				fmt.Printf("WARN OBJKT %d has illegal creator address %s\n", nft.TokenId, meta.Creators[0])
 				continue
@@ -194,11 +194,11 @@ func findExploits(ctx context.Context, c *tzpro.Client) error {
 	return nil
 }
 
-func fetch(ctx context.Context, c *tzpro.Client) error {
+func fetch(ctx context.Context, c *mvpro.Client) error {
 	// fetch all NFTs from bigmap 511
 	start := time.Now()
 	var count int = offset
-	params := tzpro.NewQuery().
+	params := mvpro.NewQuery().
 		WithMeta().
 		WithUnpack().
 		WithLimit(500).
@@ -223,7 +223,7 @@ func fetch(ctx context.Context, c *tzpro.Client) error {
 		again:
 			meta, err := nft.ResolveMetadata(ctx, c)
 			if err != nil {
-				if e, ok := tzpro.IsErrRateLimited(err); ok {
+				if e, ok := mvpro.IsErrRateLimited(err); ok {
 					fmt.Printf("ERR 429 - waiting %s...\n", e.Deadline())
 					e.Wait(ctx)
 					goto again
@@ -248,9 +248,9 @@ func fetch(ctx context.Context, c *tzpro.Client) error {
 	return nil
 }
 
-func list(ctx context.Context, c *tzpro.Client) error {
+func list(ctx context.Context, c *mvpro.Client) error {
 	var count int = offset
-	params := tzpro.NewQuery().
+	params := mvpro.NewQuery().
 		WithMeta().
 		WithUnpack().
 		WithLimit(500).

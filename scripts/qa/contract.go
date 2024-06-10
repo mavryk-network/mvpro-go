@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
+	"github.com/mavryk-network/mvpro-go/mvpro"
 )
 
-func TestContract(ctx context.Context, c *tzpro.Client) {
-	cp := tzpro.WithMeta()
-	addr := tzpro.NewAddress("KT1RJ6PbjHpwc3M5rw5s2Nbmefwbuwbdxton") // main
+func TestContract(ctx context.Context, c *mvpro.Client) {
+	cp := mvpro.WithMeta()
+	addr := mvpro.NewAddress("KT1RJ6PbjHpwc3M5rw5s2Nbmefwbuwbdxton") // main
 
 	// contract
 	try("GetContract", func() {
@@ -133,13 +133,13 @@ func TestContract(ctx context.Context, c *tzpro.Client) {
 	//
 	// tickets
 	try("ListContractTicketBalances", func() {
-		addr := tzpro.NewAddress("sr1EzLeJYWrvch2Mhvrk1nUVYrnjGQ8A4qdb")
+		addr := mvpro.NewAddress("sr1EzLeJYWrvch2Mhvrk1nUVYrnjGQ8A4qdb")
 		if b, err := c.Contract.ListTicketBalances(ctx, addr, cp); err != nil || len(b) == 0 {
 			panic(fmt.Errorf("len=%d %v", len(b), err))
 		}
 	})
 	try("ListContractTicketEvents", func() {
-		addr := tzpro.NewAddress("sr1EzLeJYWrvch2Mhvrk1nUVYrnjGQ8A4qdb")
+		addr := mvpro.NewAddress("sr1EzLeJYWrvch2Mhvrk1nUVYrnjGQ8A4qdb")
 		if e, err := c.Contract.ListTicketEvents(ctx, addr, cp); err != nil || len(e) == 0 {
 			panic(fmt.Errorf("len=%d %v", len(e), err))
 		}

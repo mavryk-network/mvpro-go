@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"blockwatch.cc/tzpro-go/tzpro"
-	"blockwatch.cc/tzpro-go/tzpro/index"
+	"github.com/mavryk-network/mvpro-go/mvpro"
+	"github.com/mavryk-network/mvpro-go/mvpro/index"
 )
 
-func TestCommon(ctx context.Context, c *tzpro.Client) (tip *index.Tip) {
+func TestCommon(ctx context.Context, c *mvpro.Client) (tip *index.Tip) {
 	// fetch status
 	try("Status", func() {
 		stat, err := c.Explorer.GetStatus(ctx)
